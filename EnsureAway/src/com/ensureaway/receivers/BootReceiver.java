@@ -1,13 +1,11 @@
 package com.ensureaway.receivers;
 
-import com.ensureaway.services.LockService;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.sax.StartElementListener;
 import android.util.Log;
+
+import com.ensureaway.services.LockService;
 
 public class BootReceiver extends BroadcastReceiver {
 

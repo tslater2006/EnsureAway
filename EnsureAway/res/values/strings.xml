@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, EnsureAwayActivity!</string>
     <string name="app_name">EnsureAway</string>
+    <string name="lockscreen_title">This device is Locked!</string>
+    <string name="lockscreen_reason">Reason Goes Here</string>
+    <string name="lockscreen_unlock_button">Press to Unlock</string>
 
 </resources>

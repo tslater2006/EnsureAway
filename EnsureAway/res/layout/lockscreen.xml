@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
-        android:text="This device is locked!"
+        android:text="@string/lockscreen_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_below="@+id/lockScreenTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:text="Locking Reason" />
+        android:text="@string/lockscreen_reason" />
 
     <Button
         android:id="@+id/lockScreenUnlockButton"
@@ -30,6 +30,6 @@
         android:layout_alignRight="@+id/lockScreenTitle"
         android:layout_below="@+id/lockScreenReason"
         android:layout_marginTop="69dp"
-        android:text="Press to Unlock" />
+        android:text="@string/lockscreen_unlock_button" />
 
 </RelativeLayout>
