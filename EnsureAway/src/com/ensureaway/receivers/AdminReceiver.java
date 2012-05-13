@@ -1,4 +1,4 @@
-package com.ensureaway;
+package com.ensureaway.receivers;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
