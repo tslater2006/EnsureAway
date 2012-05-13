@@ -43,6 +43,11 @@
         </receiver>
         <service android:name=".services.LockService"></service>
         <activity android:name=".activities.LockActivity"></activity>
+        <receiver android:name=".receivers.LockReceiver">
+            <intent-filter>
+                <action android:name="com.ensureaway.LOCK_DEVICE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
