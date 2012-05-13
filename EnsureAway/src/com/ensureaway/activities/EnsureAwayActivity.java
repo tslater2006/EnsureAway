@@ -2,6 +2,7 @@ package com.ensureaway.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ensureaway.R;
+import com.ensureaway.receivers.ScreenReceiver;
 
 public class EnsureAwayActivity extends Activity {
     /** Called when the activity is first created. */
@@ -29,6 +31,10 @@ public class EnsureAwayActivity extends Activity {
 					sendBroadcast(lockIntent);
 			}
 		});
-        
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addCategory(Intent.CATEGORY_DEFAULT);
+        registerReceiver(new ScreenReceiver(), filter);
     }
 }

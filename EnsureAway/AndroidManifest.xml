@@ -7,6 +7,7 @@
     <uses-sdk android:minSdkVersion="10" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -39,6 +40,7 @@
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
                 <action android:name="android.app.action.DEVICE_ADMIN_DISABLED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
             </intent-filter>
         </receiver>
         <service android:name=".services.LockService"></service>
