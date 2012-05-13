@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ensureaway.R;
-import com.ensureaway.services.LockService;
 
 public class EnsureAwayActivity extends Activity {
     /** Called when the activity is first created. */
@@ -23,18 +22,11 @@ public class EnsureAwayActivity extends Activity {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				LockService ls = LockService.getInstance();
-				if (ls == null)
-				{
-					Intent serviceIntent = new Intent(EnsureAwayActivity.this,LockService.class);
-					startService(serviceIntent);
-					ls = LockService.getInstance();
-				}
 				
-				if (ls != null)
-				{
-					ls.lockDevice("This is my reason");
-				}
+					Intent lockIntent = new Intent();
+					lockIntent.setAction("com.ensureaway.LOCK_DEVICE");
+					lockIntent.putExtra("reason","My Reason Goes Here");
+					sendBroadcast(lockIntent);
 			}
 		});
         
