@@ -1,12 +1,14 @@
 package com.ensureaway.activities;
 
 import android.app.Activity;
+import android.app.Service;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -40,23 +42,65 @@ public class LockActivity extends Activity {
 			}
 		});
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-	    DevicePolicyManager mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        ComponentName mDeviceAdmin = new ComponentName(this, AdminReceiver.class);
-        if (!mDPM.isAdminActive(mDeviceAdmin))
-        {
-        	// request admin
-        	Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdmin);
-            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                    "Make me admin now!");
-            startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
-        }
-        else
-        {
-        	mDPM.resetPassword("test", 0);
-        	mDPM.lockNow();
-        }
+	    new wakeThread(getApplicationContext()).start();
+	    lockDevice();
 	    
 	}
+
+	private void lockDevice() {
+		DevicePolicyManager mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+		ComponentName mDeviceAdmin = new ComponentName(this,
+				AdminReceiver.class);
+		if (!mDPM.isAdminActive(mDeviceAdmin)) {
+			// request admin
+			Intent intent = new Intent(
+					DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+			intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
+					mDeviceAdmin);
+			intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+					"Make me admin now!");
+			startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
+		} else {
+			mDPM.resetPassword("test", 0);
+			mDPM.lockNow();
+		}
+	}
+
+}
+
+class wakeThread extends Thread {
+	private Context ctx;
+
+	public wakeThread(Context ctx) {
+		this.ctx = ctx;
+	}
+
+	public void run() {
+		try {
+			Thread.sleep(250);
+		} catch (InterruptedException iex) {
+		}
+
+		PowerManager pm = (PowerManager) ctx
+				.getSystemService(Service.POWER_SERVICE);
+		WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP , "wakeThread");
+		wl.acquire();
+		try {
+			Thread.sleep(250);
+		} catch (InterruptedException iex2) {
+		}
+		wl.release();
+	}
+	
+	/*private void setWakeLock(Context context)
+	{
+	    PowerManager pm = (PowerManager) context
+	    .getSystemService(Context.POWER_SERVICE);
+	    SoundAlarmActivity.WakeLock = pm.newWakeLock(
+	    PowerManager.FULL_WAKE_LOCK |
+	        PowerManager.ACQUIRE_CAUSES_WAKEUP
+	            | PowerManager.ON_AFTER_RELEASE, "BusSnoozeAlarm");
+	    SoundAlarmActivity.WakeLock.acquire();
+	}*/
 
 }

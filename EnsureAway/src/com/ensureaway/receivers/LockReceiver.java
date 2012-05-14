@@ -8,6 +8,7 @@ import android.content.Intent;
 
 public class LockReceiver extends BroadcastReceiver {
 
+	public static boolean isLocked = false; 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
@@ -15,6 +16,7 @@ public class LockReceiver extends BroadcastReceiver {
 		String reason = intent.getExtras().getString("reason");
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		i.putExtra("reason", reason);
+		isLocked = true;
 		context.startActivity(i);
 	}
 

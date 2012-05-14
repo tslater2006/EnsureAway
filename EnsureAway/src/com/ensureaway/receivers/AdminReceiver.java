@@ -45,6 +45,10 @@ public class AdminReceiver extends DeviceAdminReceiver {
     {
     	Toast.makeText(context, "onReceive", Toast.LENGTH_LONG).show();
     	DevicePolicyManager mDPM = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        mDPM.resetPassword("", 0);
+    	if (intent.getAction().equals(Intent.ACTION_USER_PRESENT))
+    	{
+    		mDPM.resetPassword("", 0);
+    		LockReceiver.isLocked = false;
+    	}
     }
 }
