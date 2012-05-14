@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/policyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="School Days"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/policyName"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="5dp"
+        android:text="Days:" />
+
+    <TextView
+        android:id="@+id/policyDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="-MTWTF-"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/policyAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/policyDays"
+        android:layout_below="@+id/policyDays"
+        android:layout_marginTop="5dp"
+        android:text="Report"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/policyAction"
+        android:layout_alignBottom="@+id/policyAction"
+        android:layout_toLeftOf="@+id/policyDays"
+        android:text="Action:" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/policyAction"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/policyDays"
+        android:text="Start Time:" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/policyAction"
+        android:layout_alignBottom="@+id/policyAction"
+        android:layout_alignRight="@+id/textView2"
+        android:text="End Time:" />
+
+    <TextView
+        android:id="@+id/policyStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="8:00 AM" />
+
+    <TextView
+        android:id="@+id/policyEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView03"
+        android:layout_alignBottom="@+id/TextView03"
+        android:layout_alignRight="@+id/policyStart"
+        android:text="3:30 PM" />
+
+</RelativeLayout>
