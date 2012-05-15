@@ -2,9 +2,12 @@ package com.ensureaway.entities;
 
 import java.util.Calendar;
 
-import org.kroz.activerecord.ActiveRecordBase;
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 
-public class Policy extends ActiveRecordBase {
+@Table(name="Policies")
+public class Policy extends Model {
 	public final static int SUNDAY = 1;
 	public final static int MONDAY = 2;
 	public final static int TUESDAY = 4;
@@ -16,18 +19,26 @@ public class Policy extends ActiveRecordBase {
 	public final static String ACTION_REPORT = "REPORT";
 	public final static String ACTION_LOG = "LOG";
 
+	@Column(name="name",notNull= true)
 	public String name;
-	public String description;
+	
+	@Column(name="action",notNull= true)
 	public String action;
 
+	@Column(name="startHour",notNull= true)
 	public int startHour;
+	@Column(name="startMinute",notNull= true)
 	public int startMinute;
 
+	@Column(name="endHour",notNull= true)
 	public int endHour;
+	@Column(name="endMinute",notNull= true)
 	public int endMinute;
 
+	@Column(name="days",notNull= true)
 	public int days;
 
+	@Column(name="active",notNull= true)
 	public boolean active;
 
 	private Calendar m_startTime = null;
