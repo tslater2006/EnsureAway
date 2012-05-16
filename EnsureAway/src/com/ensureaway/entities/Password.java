@@ -3,6 +3,7 @@ package com.ensureaway.entities;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
@@ -14,12 +15,19 @@ public class Password extends Model {
 	@Column(name = "hash")
 	public String hash;
 
+	@Column(name = "date")
+	public Calendar date;
+	
+	@Column(name = "active")
+	public boolean active;	
+	
 	public Password() {
-
 	}
 
 	public Password(String pass) {
 		this.hash = hashPassword(pass);
+		date = Calendar.getInstance();
+		active = true;
 		pass = null;
 		System.gc();
 	}

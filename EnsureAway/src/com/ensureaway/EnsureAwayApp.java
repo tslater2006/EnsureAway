@@ -6,18 +6,21 @@ import android.app.Application;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
+import com.ensureaway.entities.RunLog;
 import com.ensureaway.receivers.AdminReceiver;
 
 public class EnsureAwayApp extends Application {
 	public static DevicePolicyManager mDPM;
 	public static ComponentName mAdminName;
-
+	public static boolean IS_FIRST_RUN = false;
+	public static boolean passed_login = false;
+	
 	public void onCreate() {
 		super.onCreate();
-		boolean IS_FIRST_RUN = true;
+		
 		if (IS_FIRST_RUN )
 		{
 			File f = new File("/data/data/com.ensureaway/databases/ensureaway.db");
@@ -28,7 +31,7 @@ public class EnsureAwayApp extends Application {
 			f.delete();
 		}
 		ActiveAndroid.initialize(this);
-		
+		IS_FIRST_RUN = new Select().from(RunLog.class).execute().size() == 0;
 		mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
 		mAdminName = new ComponentName(this, AdminReceiver.class);
 				
