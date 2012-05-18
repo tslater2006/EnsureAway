@@ -5,6 +5,7 @@ import java.util.Calendar;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 @Table(name="Policies")
 public class Policy extends Model {
@@ -129,6 +130,13 @@ public class Policy extends Model {
 		}
 		
 		return sb.toString();
+	}
+
+	public static int getActiveCount() {
+		// TODO Auto-generated method stub
+		int size = new Select().from(Policy.class)
+		.where("active = ?", 1).execute().size();
+		return size;
 	}
 
 }

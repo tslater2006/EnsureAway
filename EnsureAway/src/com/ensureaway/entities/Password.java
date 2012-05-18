@@ -3,11 +3,13 @@ package com.ensureaway.entities;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 @Table(name = "PasswordLog")
 public class Password extends Model {
@@ -76,5 +78,26 @@ public class Password extends Model {
 			e.printStackTrace();
 		}
 		return "ERROR";
+	}
+	
+	public static void setNewPassword(String pass)
+	{
+		
+		Password p = new Password(pass);
+		ArrayList<Password> oldPasses = new Select().from(Password.class).execute();
+		for (Password oldPass: oldPasses)
+		{
+			oldPass.active = false;
+			oldPass.save();
+		}
+		p.active = true;
+		p.date = Calendar.getInstance();
+		p.save();
+	}
+
+	public static boolean validatePassword(String string) {
+		// TODO Auto-generated method stub
+		return (new Select().from(Password.class).where("hash = ? and active = ?",
+				string, 1).execute().size() == 1);
 	}
 }

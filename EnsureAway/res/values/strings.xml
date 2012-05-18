@@ -6,5 +6,20 @@
     <string name="lockscreen_title">This device is Locked!</string>
     <string name="lockscreen_reason">Reason Goes Here</string>
     <string name="lockscreen_unlock_button">Press to Unlock</string>
+    <string-array name="report_frequency">
+        <item >Select One</item>
+        <item >Immediate</item>
+        <item >Hourly</item>
+        <item >Daily</item>
+        <item >Weekly</item>
+        <item >Monthly</item>
+        <item >Minute</item>
+    </string-array>
 
+    <string-array name="report_type">
+        <item >Select One</item>
+        <item >Basic Report</item>
+        <item >Full Report</item>
+        <item >Minimal Report</item>
+    </string-array>
 </resources>

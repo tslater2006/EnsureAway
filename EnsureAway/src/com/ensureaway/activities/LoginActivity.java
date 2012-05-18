@@ -112,6 +112,7 @@ class UnlockListener implements OnClickListener {
 			
 			Intent i = new Intent(ctx, AdminPanelActivity.class);
 			i.putExtra("passHash", p.hash + "");
+			passwordBox.setText("");
 			ctx.startActivity(i);
 		}
 		else
